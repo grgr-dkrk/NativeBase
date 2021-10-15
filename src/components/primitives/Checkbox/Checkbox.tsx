@@ -65,6 +65,9 @@ const Checkbox = ({ wrapperRef, ...props }: ICheckboxProps, ref: any) => {
   } = inputProps;
 
   const {
+    accessibilityLabel,
+    accessibilityRole,
+    accessibilityState,
     icon,
     _interactionBox,
     _icon,
@@ -76,6 +79,7 @@ const Checkbox = ({ wrapperRef, ...props }: ICheckboxProps, ref: any) => {
     onHoverOut,
     onFocus,
     onBlur,
+    value: inputValue,
     ...resolvedProps
   } = usePropsResolution('Checkbox', inputProps, {
     isInvalid,
@@ -107,7 +111,9 @@ const Checkbox = ({ wrapperRef, ...props }: ICheckboxProps, ref: any) => {
       // alignItems="flex-start"
       //some input props
       ref={mergeRefs([ref, wrapperRef])}
-      accessibilityRole="checkbox"
+      accessibilityLabel={accessibilityLabel ?? inputValue}
+      accessibilityRole={accessibilityRole}
+      accessibilityState={accessibilityState}
       onPressIn={composeEventHandlers(onPressIn, pressableProps.onPressIn)}
       onPressOut={composeEventHandlers(onPressOut, pressableProps.onPressOut)}
       // @ts-ignore - web only
